@@ -1,5 +1,5 @@
-export default class gameRender {
-  CONTAINER = document.getElementById('container');
+export default class GameRender {
+  container = document.getElementById('container');
 
   constructor() {
     this.checkGameStatus();
@@ -15,6 +15,6 @@ export default class gameRender {
     const templateDifficulty = document.getElementById(templateName);
     const clone = templateDifficulty.content.cloneNode(true);
 
-    this.CONTAINER.appendChild(clone);
+    this.container.appendChild(clone);
   }
 }
