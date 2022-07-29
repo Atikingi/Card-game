@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Найди пару</title>
+  </head>
+  <body>
+    <div class="container" id="container">
+      <template id="template-difficulty">
+        <form class="game__difficulty">
+          <h3 class="game__difficulty-title">Выбери сложность</h3>
+          <div class="game__difficulty-items">
+            <input
+              class="game__difficulty-radio"
+              type="radio"
+              name="difficulty"
+              id="difficulty-one"
+              value="1"
+              checked
+            />
+            <input
+              class="game__difficulty-radio"
+              type="radio"
+              name="difficulty"
+              id="difficulty-two"
+              value="2"
+            />
+            <input
+              class="game__difficulty-radio"
+              type="radio"
+              name="difficulty"
+              id="difficulty-three"
+              value="3"
+            />
+
+            <label for="difficulty-one" class="game__difficulty-item">1</label>
+            <label for="difficulty-two" class="game__difficulty-item">2</label>
+            <label for="difficulty-three" class="game__difficulty-item">3</label>
+          </div>
+          <button class="game__difficulty-button">Старт</button>
+        </form>
+      </template>
+    </div>
+
+    <script src="./src/game.js" type="module"></script>
+    <script src="./src/render.js" type="module"></script>
+  </body>
+</html>
