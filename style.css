@@ -29,6 +29,10 @@
   border-radius: 12px;
 }
 
+.game__difficulty__hidden {
+  display: none;
+}
+
 .game__difficulty-title {
   max-width: 208px;
   margin-bottom: 48px;
@@ -74,8 +78,7 @@
 
 #difficulty-one:checked ~ label[for='difficulty-one'],
 #difficulty-two:checked ~ label[for='difficulty-two'],
-#difficulty-three:checked ~ label[for='difficulty-three']
- {
+#difficulty-three:checked ~ label[for='difficulty-three'] {
   background-color: #0b3d56;
   color: white;
 }
