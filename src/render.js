@@ -24,7 +24,7 @@ export default class GameRender {
    startGame() {
       this.difficultyForm.classList.add('game__difficulty__hidden');
 
-      game.status = 'game';
+      window.game.status = 'game';
 
       this.renderScreen('template-game');
    }
