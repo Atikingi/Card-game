@@ -1,0 +1,38 @@
+{
+   "name": "card-game",
+   "version": "1.0.0",
+   "description": "Карточная игра \"Найди пару\"",
+   "main": "index.js",
+   "scripts": {
+      "test": "echo \"Error: no test specified\" && exit 1",
+      "format": "prettier --write .",
+      "lint:css": "stylelint ./style/**/*.css",
+      "lint:js": "eslint ./src/**/*.js",
+      "prepare": "husky install",
+      "husky": "node ./node_modules/husky/lib/bin.js",
+      "lint": "npm run lint:js && npm run lint:css"
+   },
+   "repository": {
+      "type": "git",
+      "url": "git+https://github.com/Atikingi/Card-game.git"
+   },
+   "author": "",
+   "license": "ISC",
+   "bugs": {
+      "url": "https://github.com/Atikingi/Card-game/issues"
+   },
+   "homepage": "https://github.com/Atikingi/Card-game#readme",
+   "devDependencies": {
+      "@babel/core": "^7.18.10",
+      "@babel/eslint-parser": "^7.18.9",
+      "eslint": "^8.21.0",
+      "eslint-config-prettier": "^8.5.0",
+      "eslint-plugin-prettier": "^4.2.1",
+      "husky": "^8.0.1",
+      "prettier": "^2.7.1",
+      "stylelint": "^14.9.1",
+      "stylelint-config-prettier": "^9.0.3",
+      "stylelint-config-standard": "^26.0.0",
+      "stylelint-prettier": "^2.0.0"
+   }
+}

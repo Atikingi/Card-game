@@ -1,0 +1,98 @@
+* {
+   margin: 0;
+   padding: 0;
+   box-sizing: border-box;
+}
+
+.container {
+   width: 100vw;
+   height: 100vh;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   background-color: #004980;
+}
+
+/* Start screen  */
+
+.game__difficulty {
+   max-width: 480px;
+   padding: 52px 69px 48px;
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+   background-color: #c2f5ff;
+   border-radius: 12px;
+}
+
+.game__difficulty__hidden {
+   display: none;
+}
+
+.game__difficulty-title {
+   max-width: 208px;
+   margin-bottom: 48px;
+   font-style: normal;
+   font-weight: 400;
+   font-size: 40px;
+   text-align: center;
+   color: #004980;
+}
+
+.game__difficulty-items {
+   display: flex;
+   justify-content: space-between;
+   gap: 24px;
+   margin-bottom: 67px;
+}
+
+.game__difficulty-item {
+   width: 98px;
+   height: 98px;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   font-style: normal;
+   font-weight: 400;
+   font-size: 64px;
+   line-height: 72px;
+   color: #0080c1;
+   background: #fff;
+   border-radius: 12px;
+}
+
+.game__difficulty-item:hover {
+   cursor: pointer;
+}
+
+.game__difficulty-radio {
+   display: none;
+}
+
+#difficulty-one:checked ~ label[for='difficulty-one'],
+#difficulty-two:checked ~ label[for='difficulty-two'],
+#difficulty-three:checked ~ label[for='difficulty-three'] {
+   background-color: #0b3d56;
+   color: white;
+}
+
+.game__difficulty-button {
+   width: 246px;
+   height: 46px;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   font-style: normal;
+   font-weight: 400;
+   font-size: 24px;
+   line-height: 32px;
+   color: #fff;
+   background: #7ac100;
+   border-radius: 12px;
+   border: 0;
+}
+
+.game__difficulty-button:hover {
+   cursor: pointer;
+}
