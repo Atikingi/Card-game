@@ -24,14 +24,11 @@ class GameEvent {
     const { target } = event;
     const difficultyField = document.getElementById('difficulty-field');
 
-    for (let i = 0; i < difficultyField.children.length; i++) {
-      if (
-        difficultyField.children[i].type === 'radio' &&
-        difficultyField.children[i].checked
-      ) {
-        game.difficulty = difficultyField.children[i].value;
+    difficultyField.childNodes.forEach((node) => {
+      if (node.type === 'radio' && node.checked) {
+        game.difficulty = node.value;
       }
-    }
+    });
 
     renderScreens.startGame(target);
   }
