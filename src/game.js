@@ -28,8 +28,7 @@ class GameEvent {
       });
    }
 
-   checkDifficulty(event) {
-      const { target } = event;
+   checkDifficulty({ target }) {
       const difficultyField = document.getElementById('difficulty-field');
 
       difficultyField.childNodes.forEach((node) => {
@@ -45,8 +44,6 @@ class GameEvent {
       if (target.dataset.id) {
          document.getElementById(target.dataset.id).classList.toggle('flip');
       }
-
-      return;
    }
 }
 
