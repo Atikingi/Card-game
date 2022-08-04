@@ -9,7 +9,6 @@
       "lint:css": "stylelint ./style/**/*.css",
       "lint:js": "eslint ./src/**/*.js",
       "prepare": "husky install",
-      "husky": "node ./node_modules/husky/lib/bin.js",
       "lint": "npm run lint:js && npm run lint:css"
    },
    "repository": {

@@ -1,7 +1,17 @@
+@font-face {
+   font-family: Stratos;
+   src: url('../public/fonts/stratos/Stratos-Regular.woff2') format('woff2'),
+      url('../public/fonts/stratos/Stratos-Regular.woff') format('woff');
+   font-weight: normal;
+   font-style: normal;
+   font-display: swap;
+}
+
 * {
    margin: 0;
    padding: 0;
    box-sizing: border-box;
+   font-family: Stratos, sans-serif;
 }
 
 .container {
@@ -11,6 +21,11 @@
    align-items: center;
    justify-content: center;
    background-color: #004980;
+}
+
+.center {
+   padding-left: calc(50% - 600px);
+   padding-right: calc(50% - 600px);
 }
 
 /* Start screen  */
@@ -77,12 +92,13 @@
    color: white;
 }
 
-.game__difficulty-button {
+.game__button {
    width: 246px;
    height: 46px;
    display: flex;
    align-items: center;
    justify-content: center;
+   font-family: Stratos, sans-serif;
    font-style: normal;
    font-weight: 400;
    font-size: 24px;
@@ -93,6 +109,146 @@
    border: 0;
 }
 
-.game__difficulty-button:hover {
+.game__button:hover {
    cursor: pointer;
+}
+
+/* Game screen  */
+.game__screen {
+   width: 100%;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   gap: 35px;
+}
+
+.game__header {
+   width: 100%;
+   max-width: 1000px;
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+}
+
+.game__timer {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+}
+
+.game__timer-description {
+   height: 18px;
+   width: 100%;
+   display: flex;
+   justify-content: center;
+   font-style: normal;
+   font-weight: 400;
+   font-size: 16px;
+   line-height: 32px;
+   color: #fff;
+}
+
+.game__timer-time {
+   font-style: normal;
+   font-weight: 400;
+   font-size: 64px;
+   line-height: 72px;
+   color: #fff;
+}
+
+.game__timer-description-minute {
+   width: 100%;
+   text-align: right;
+   padding-right: 15px;
+}
+
+.game__timer-description-seconds {
+   width: 100%;
+   padding-right: 5px;
+   text-align: right;
+}
+
+.game__cards-field {
+   width: 100%;
+   max-width: 1000px;
+   display: flex;
+   flex-wrap: wrap;
+   justify-content: space-between;
+   gap: 15px;
+}
+
+.game__card-wrapper {
+   perspective: 1000;
+}
+
+.game__card {
+   position: relative;
+   width: 95px;
+   height: 133px;
+   transition: 0.6s;
+   transform-style: preserve-3d;
+}
+
+.game__card-wrapper.flip .game__card {
+   transform: rotateY(180deg);
+}
+
+.game__card-back,
+.game__card-front {
+   backface-visibility: hidden;
+   position: absolute;
+   top: 0;
+   left: 0;
+}
+
+.game__card-back {
+   z-index: 2;
+   width: 100%;
+   height: 100%;
+   background-image: url('../public/img/card-back.jpg');
+   border-radius: 4px;
+}
+
+.game__card-front {
+   width: 100%;
+   height: 100%;
+   padding: 6px;
+   display: flex;
+   flex-direction: column;
+   gap: 18px;
+   background-color: #fff;
+   border-radius: 4px;
+   transform: rotateY(180deg);
+}
+
+.game__card-index-box {
+   max-width: 12px;
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+   gap: 4px;
+}
+
+.game__card-dignity {
+   max-height: 20px;
+   font-style: normal;
+   font-weight: 400;
+   font-size: 24px;
+   line-height: 22px;
+   color: #000;
+}
+
+.game__card-suit {
+   width: 7px;
+   height: 6px;
+}
+
+.game__card-suit-big {
+   align-self: center;
+}
+
+.game__card-index-box__rotate {
+   align-self: flex-end;
+   transform: rotate(180deg);
 }

@@ -46,13 +46,25 @@
                      >3</label
                   >
                </div>
-               <button class="game__difficulty-button" id="start-game">
-                  Старт
-               </button>
+               <button class="game__button" id="start-game">Старт</button>
             </form>
          </template>
          <template id="template-game">
-            <h1>Game screen coming soon.....</h1>
+            <div class="game__screen center">
+               <header class="game__header">
+                  <div class="game__timer">
+                     <div class="game__timer-description">
+                        <span class="game__timer-description-minute">min</span>
+                        <span class="game__timer-description-seconds">sec</span>
+                     </div>
+                     <h2 class="game__timer-time" id="timer">00:00</h2>
+                  </div>
+                  <button class="game__button" id="restart">
+                     Начать заново
+                  </button>
+               </header>
+               <section class="game__cards-field" id="card-field"></section>
+            </div>
          </template>
       </div>
 

@@ -12,6 +12,8 @@ window.game = {
 const renderScreens = new GameRender();
 
 class GameEvent {
+   container = document.getElementById('container');
+
    constructor() {
       document
          .getElementById('start-game')
@@ -20,6 +22,10 @@ class GameEvent {
 
             this.checkDifficulty(event);
          });
+
+      this.container.addEventListener('click', (event) => {
+         this.flipper(event.target);
+      });
    }
 
    checkDifficulty(event) {
@@ -33,6 +39,14 @@ class GameEvent {
       });
 
       renderScreens.startGame(target);
+   }
+
+   flipper(target) {
+      if (target.dataset.id) {
+         document.getElementById(target.dataset.id).classList.toggle('flip');
+      }
+
+      return;
    }
 }
 
