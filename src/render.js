@@ -1,5 +1,10 @@
 export default class GameRender {
    container = document.getElementById('container');
+   cardsByDifficulty = {
+      1: 3,
+      2: 6,
+      3: 12,
+   };
 
    constructor() {
       this.checkGameStatus();
@@ -31,26 +36,45 @@ export default class GameRender {
       this.renderCard();
    }
 
+   playAgain() {
+      document.getElementById('card-field').innerHTML = '';
+      this.renderCard();
+   }
+
    createCard(dignityValue, smallIcon, bigIcon, suitName) {
+      const checkDataSetId = () => {
+         return document.getElementById(suitName + dignityValue)
+            ? suitName + dignityValue + 'double'
+            : suitName + dignityValue;
+      };
+
+      window.game.cards.push(checkDataSetId());
+
       const fragment = document.createDocumentFragment();
 
       const cardWrapper = document.createElement('div');
       cardWrapper.classList.add('game__card-wrapper');
       cardWrapper.dataset.dignity = dignityValue;
       cardWrapper.dataset.suit = suitName;
-      cardWrapper.id = suitName + dignityValue;
+      cardWrapper.id = checkDataSetId();
+      cardWrapper.classList.add('flip');
+
+      setTimeout(() => {
+         cardWrapper.classList.remove('flip');
+      }, 5000);
 
       const card = document.createElement('div');
       card.classList.add('game__card');
-      card.dataset.id = suitName + dignityValue;
+      card.dataset.id = checkDataSetId();
 
       const cardBack = document.createElement('div');
       cardBack.classList.add('game__card-back');
-      cardBack.dataset.id = suitName + dignityValue;
+      cardBack.dataset.id = checkDataSetId();
 
       const cardFront = document.createElement('div');
       cardFront.classList.add('game__card-front');
-      cardFront.dataset.id = suitName + dignityValue;
+      cardFront.dataset.id = checkDataSetId();
+      cardFront.dataset.active = true;
 
       const indexBox = document.createElement('div');
       indexBox.classList.add('game__card-index-box');
@@ -58,12 +82,14 @@ export default class GameRender {
       const dignity = document.createElement('div');
       dignity.classList.add('game__card-dignity');
       dignity.textContent = dignityValue;
-      dignity.dataset.id = suitName + dignityValue;
+      dignity.dataset.id = checkDataSetId();
+      dignity.dataset.active = true;
 
       const suitSmallIcon = document.createElement('img');
       suitSmallIcon.classList.add('game__card-suit');
       suitSmallIcon.src = smallIcon;
-      suitSmallIcon.dataset.id = suitName + dignityValue;
+      suitSmallIcon.dataset.id = checkDataSetId();
+      suitSmallIcon.dataset.active = true;
 
       const dignityReverse = document.createElement('div');
       dignityReverse.classList.add('game__card-dignity');
@@ -78,7 +104,8 @@ export default class GameRender {
       suitBigIcon.src = bigIcon;
       suitBigIcon.style.width = '29';
       suitBigIcon.style.height = '26';
-      suitBigIcon.dataset.id = suitName + dignityValue;
+      suitBigIcon.dataset.id = checkDataSetId();
+      suitBigIcon.dataset.active = true;
 
       const indexBoxReverse = document.createElement('div');
       indexBoxReverse.classList.add(
@@ -107,7 +134,21 @@ export default class GameRender {
    }
 
    renderCard() {
-      const cardValues = GameRender.templateCard;
+      let cardValues = GameRender.templateCard;
+      const difficulty = Number(window.game.difficulty);
+      const numberOfCards = this.cardsByDifficulty[difficulty];
+
+      function shuffle(array) {
+         for (let i = array.length - 1; i > 0; i--) {
+            let randomIndex = Math.floor(Math.random() * (i + 1));
+            [array[i], array[randomIndex]] = [array[randomIndex], array[i]];
+         }
+         return array;
+      }
+      cardValues = shuffle(cardValues);
+      cardValues = cardValues.slice(0, numberOfCards);
+      cardValues.push(...cardValues);
+      cardValues = shuffle(cardValues);
 
       cardValues.forEach((card) => {
          this.createCard(
