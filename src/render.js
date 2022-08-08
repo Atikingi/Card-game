@@ -1,10 +1,6 @@
 export default class GameRender {
    container = document.getElementById('container');
-   cardsByDifficulty = {
-      1: 3,
-      2: 6,
-      3: 12,
-   };
+   cardsByDifficulty = [3, 6, 12];
 
    constructor() {
       this.checkGameStatus();
@@ -43,9 +39,40 @@ export default class GameRender {
 
    createCard(dignityValue, smallIcon, bigIcon, suitName) {
       const checkDataSetId = () => {
-         return document.getElementById(suitName + dignityValue)
-            ? suitName + dignityValue + 'double'
-            : suitName + dignityValue;
+         const datIdName = suitName + dignityValue;
+         return document.getElementById(datIdName)
+            ? datIdName + 'double'
+            : datIdName;
+      };
+
+      const addClass = (classArray, element) => {
+         if (classArray.length === 1) {
+            element.classList.add(classArray[0]);
+         } else {
+            element.classList.add(...classArray);
+         }
+      };
+
+      const addDataAttrs = (objectOfAttrs, element) => {
+         for (let key in objectOfAttrs) {
+            element.dataset[key] = objectOfAttrs[key];
+         }
+      };
+
+      const addStyle = (objectOfStyles, element) => {
+         for (let key in objectOfStyles) {
+            element.dataset[key] = objectOfStyles[key];
+         }
+      };
+
+      const addId = (element, idValue) => {
+         element.id = idValue;
+      };
+
+      const addSingleAttrs = (objectOfAttrs, element) => {
+         for (let key in objectOfAttrs) {
+            element[key] = objectOfAttrs[key];
+         }
       };
 
       window.game.cards.push(checkDataSetId());
@@ -53,59 +80,52 @@ export default class GameRender {
       const fragment = document.createDocumentFragment();
 
       const cardWrapper = document.createElement('div');
-      cardWrapper.classList.add('game__card-wrapper');
-      cardWrapper.dataset.dignity = dignityValue;
-      cardWrapper.dataset.suit = suitName;
-      cardWrapper.id = checkDataSetId();
-      cardWrapper.classList.add('flip');
+      addClass(['game__card-wrapper', 'flip'], cardWrapper);
+      addDataAttrs({ dignity: dignityValue, suit: suitName }, cardWrapper);
+      addId(cardWrapper, checkDataSetId());
 
       setTimeout(() => {
          cardWrapper.classList.remove('flip');
       }, 5000);
 
       const card = document.createElement('div');
-      card.classList.add('game__card');
-      card.dataset.id = checkDataSetId();
+      addClass(['game__card'], card);
+      addDataAttrs({ id: checkDataSetId() }, card);
 
       const cardBack = document.createElement('div');
-      cardBack.classList.add('game__card-back');
-      cardBack.dataset.id = checkDataSetId();
+      addClass(['game__card-back'], cardBack);
+      addDataAttrs({ id: checkDataSetId() }, cardBack);
 
       const cardFront = document.createElement('div');
-      cardFront.classList.add('game__card-front');
-      cardFront.dataset.id = checkDataSetId();
-      cardFront.dataset.active = true;
+      addClass(['game__card-front'], cardFront);
+      addDataAttrs({ id: checkDataSetId(), active: true }, cardFront);
 
       const indexBox = document.createElement('div');
-      indexBox.classList.add('game__card-index-box');
+      addClass(['game__card-index-box'], indexBox);
 
       const dignity = document.createElement('div');
-      dignity.classList.add('game__card-dignity');
-      dignity.textContent = dignityValue;
-      dignity.dataset.id = checkDataSetId();
-      dignity.dataset.active = true;
+      addClass(['game__card-dignity'], dignity);
+      addSingleAttrs({ textContent: dignityValue }, dignity);
+      addDataAttrs({ id: checkDataSetId(), active: true }, dignity);
 
       const suitSmallIcon = document.createElement('img');
-      suitSmallIcon.classList.add('game__card-suit');
-      suitSmallIcon.src = smallIcon;
-      suitSmallIcon.dataset.id = checkDataSetId();
-      suitSmallIcon.dataset.active = true;
+      addClass(['game__card-suit'], suitSmallIcon);
+      addSingleAttrs({ src: smallIcon }, suitSmallIcon);
+      addDataAttrs({ id: checkDataSetId(), active: true }, suitSmallIcon);
 
       const dignityReverse = document.createElement('div');
-      dignityReverse.classList.add('game__card-dignity');
-      dignityReverse.textContent = dignityValue;
+      addClass(['game__card-dignity'], dignityReverse);
+      addSingleAttrs({ textContent: dignityValue }, dignityReverse);
 
       const suitSmallIconReverse = document.createElement('img');
-      suitSmallIconReverse.classList.add('game__card-suit');
-      suitSmallIconReverse.src = smallIcon;
+      addClass(['game__card-suit'], suitSmallIconReverse);
+      addSingleAttrs({ src: smallIcon }, suitSmallIconReverse);
 
       const suitBigIcon = document.createElement('img');
-      suitBigIcon.classList.add('game__card-suit-big');
-      suitBigIcon.src = bigIcon;
-      suitBigIcon.style.width = '29';
-      suitBigIcon.style.height = '26';
-      suitBigIcon.dataset.id = checkDataSetId();
-      suitBigIcon.dataset.active = true;
+      addClass(['game__card-suit-big'], suitBigIcon);
+      addSingleAttrs({ src: bigIcon }, suitBigIcon);
+      addStyle({ width: '29', height: '26' }, suitBigIcon);
+      addDataAttrs({ id: checkDataSetId(), active: true }, suitBigIcon);
 
       const indexBoxReverse = document.createElement('div');
       indexBoxReverse.classList.add(
@@ -133,22 +153,23 @@ export default class GameRender {
       this.cardField.appendChild(fragment);
    }
 
+   shuffleCards(array) {
+      for (let i = array.length - 1; i > 0; i--) {
+         let randomIndex = Math.floor(Math.random() * (i + 1));
+         [array[i], array[randomIndex]] = [array[randomIndex], array[i]];
+      }
+      return array;
+   }
+
    renderCard() {
       let cardValues = GameRender.templateCard;
       const difficulty = Number(window.game.difficulty);
       const numberOfCards = this.cardsByDifficulty[difficulty];
 
-      function shuffle(array) {
-         for (let i = array.length - 1; i > 0; i--) {
-            let randomIndex = Math.floor(Math.random() * (i + 1));
-            [array[i], array[randomIndex]] = [array[randomIndex], array[i]];
-         }
-         return array;
-      }
-      cardValues = shuffle(cardValues);
+      cardValues = this.shuffleCards(cardValues);
       cardValues = cardValues.slice(0, numberOfCards);
       cardValues.push(...cardValues);
-      cardValues = shuffle(cardValues);
+      cardValues = this.shuffleCards(cardValues);
 
       cardValues.forEach((card) => {
          this.createCard(

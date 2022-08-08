@@ -68,9 +68,9 @@ class GameEvent {
    }
 
    checkResult() {
+      const [firstCard, secondCard] = this.compare;
       if (this.clickCount === 2) {
-         this.compare[1].startsWith(this.compare[0]) ||
-         this.compare[0].startsWith(this.compare[1])
+         secondCard.startsWith(firstCard) || firstCard.startsWith(secondCard)
             ? (this.clickCount = 0)
             : setTimeout(() => {
                  alert('Вы проиграли');
