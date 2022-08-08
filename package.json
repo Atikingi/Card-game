@@ -6,10 +6,12 @@
    "scripts": {
       "test": "echo \"Error: no test specified\" && exit 1",
       "format": "prettier --write .",
-      "lint:css": "stylelint ./style/**/*.css",
+      "lint:css": "stylelint ./src/style/**/*.css",
       "lint:js": "eslint ./src/**/*.js",
       "prepare": "husky install",
-      "lint": "npm run lint:js && npm run lint:css"
+      "lint": "npm run lint:js && npm run lint:css",
+      "build": "cross-env NODE_ENV=production webpack",
+      "start": "webpack-dev-server --open"
    },
    "repository": {
       "type": "git",
@@ -24,14 +26,25 @@
    "devDependencies": {
       "@babel/core": "^7.18.10",
       "@babel/eslint-parser": "^7.18.9",
+      "copy-webpack-plugin": "^11.0.0",
+      "cross-env": "^7.0.3",
+      "css-loader": "^6.7.1",
+      "css-minimizer-webpack-plugin": "^4.0.0",
       "eslint": "^8.21.0",
       "eslint-config-prettier": "^8.5.0",
       "eslint-plugin-prettier": "^4.2.1",
+      "html-webpack-plugin": "^5.5.0",
       "husky": "^8.0.1",
+      "mini-css-extract-plugin": "^2.6.1",
       "prettier": "^2.7.1",
+      "style-loader": "^3.3.1",
       "stylelint": "^14.9.1",
       "stylelint-config-prettier": "^9.0.3",
       "stylelint-config-standard": "^26.0.0",
-      "stylelint-prettier": "^2.0.0"
-   }
+      "stylelint-prettier": "^2.0.0",
+      "webpack": "^5.74.0",
+      "webpack-cli": "^4.10.0",
+      "webpack-dev-server": "^4.9.3"
+   },
+   "dependencies": {}
 }
