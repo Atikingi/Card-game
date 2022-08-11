@@ -8,8 +8,9 @@
       "format": "prettier --write .",
       "lint:css": "stylelint ./src/style/**/*.css",
       "lint:js": "eslint ./src/**/*.js",
+      "lint:ts": "tsc --noEmit",
       "prepare": "husky install",
-      "lint": "npm run lint:js && npm run lint:css",
+      "lint": "npm run lint:ts && npm run lint:css",
       "build": "cross-env NODE_ENV=production webpack",
       "start": "webpack-dev-server --open"
    },
