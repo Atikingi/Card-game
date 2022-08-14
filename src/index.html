@@ -50,7 +50,7 @@
             </form>
          </template>
          <template id="template-game">
-            <div class="game__screen center">
+            <div class="game__screen center" id="screen-game">
                <header class="game__header">
                   <div class="game__timer">
                      <div class="game__timer-description">
@@ -66,9 +66,31 @@
                <section class="game__cards-field" id="card-field"></section>
             </div>
          </template>
+         <template id="template-result">
+            <div class="game__result-wrapper" id="screen-result">
+               <div class="game__result">
+                  <img
+                     class="game__result-image"
+                     id="result-icon"
+                     src="../public/img/win.svg"
+                     alt="win"
+                     width="96"
+                     height="96"
+                  />
+                  <h3 class="game__result-title" id="result-status">
+                     Вы выиграли!
+                  </h3>
+                  <p class="game__result-time-title">Затраченное время:</p>
+                  <div class="game__result-time" id="result-time">00:00</div>
+                  <button class="game__button" id="restart">
+                     Начать заново
+                  </button>
+               </div>
+            </div>
+         </template>
       </div>
 
-      <script src="./src/game.js" type="module"></script>
-      <script src="./src/render.js" type="module"></script>
+      <script src="./game.ts" type="module"></script>
+      <script src="./render.ts" type="module"></script>
    </body>
 </html>

@@ -41,7 +41,7 @@
    border-radius: 12px;
 }
 
-.game__difficulty__hidden {
+.game__difficulty_hidden {
    display: none;
 }
 
@@ -251,4 +251,59 @@
 .game__card-index-box__rotate {
    align-self: flex-end;
    transform: rotate(180deg);
+}
+
+/* result screen */
+
+.game__result-wrapper {
+   width: 100%;
+   min-height: 100%;
+   background-color: rgb(0 0 0 / 50%);
+   overflow: hidden;
+   position: fixed;
+   top: 0;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+
+.game__result {
+   max-width: 480px;
+   padding: 30px 102px 48px;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   background-color: #c2f5ff;
+   border-radius: 12px;
+}
+
+.game__result-image {
+   margin-bottom: 5px;
+}
+
+.game__result-title {
+   margin-bottom: 28px;
+   font-style: normal;
+   font-weight: 400;
+   font-size: 40px;
+   line-height: 48px;
+   color: #004980;
+}
+
+.game__result-time-title {
+   margin-bottom: 10px;
+   font-style: normal;
+   font-weight: 400;
+   font-size: 24px;
+   line-height: 32px;
+   color: #000;
+}
+
+.game__result-time {
+   margin-bottom: 40px;
+   font-style: normal;
+   font-weight: 400;
+   font-size: 64px;
+   line-height: 72px;
+   color: #000;
 }
