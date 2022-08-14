@@ -1,3 +1,5 @@
+import { CardsObject, ScreensTemplate } from './types';
+
 export default class GameRender {
    container: HTMLElement | null = document.getElementById('container');
    cardsByDifficulty: number[] = [3, 6, 12];
@@ -22,7 +24,7 @@ export default class GameRender {
          this.difficultyForm = document.getElementById('difficulty-form');
 
          if (this.difficultyForm) {
-            this.difficultyForm.classList.remove('game__difficulty__hidden');
+            this.difficultyForm.classList.remove('game__difficulty_hidden');
          }
       }
 
@@ -31,7 +33,7 @@ export default class GameRender {
       }
    }
 
-   renderScreen(templateName: string) {
+   renderScreen(templateName: ScreensTemplate) {
       this.templateItem = document.getElementById(templateName);
       if (
          this.templateItem &&
@@ -46,7 +48,7 @@ export default class GameRender {
 
    startGame() {
       if (this.difficultyForm) {
-         this.difficultyForm.classList.add('game__difficulty__hidden');
+         this.difficultyForm.classList.add('game__difficulty_hidden');
       }
       window.game.status = 'game';
 
@@ -56,7 +58,7 @@ export default class GameRender {
    }
 
    renderResultScreen() {
-      this.renderScreen('template-win');
+      this.renderScreen('template-result');
    }
 
    restartGame() {
@@ -65,7 +67,7 @@ export default class GameRender {
       this.difficultyForm = document.getElementById('difficulty-form');
 
       if (this.difficultyForm) {
-         this.difficultyForm.classList.remove('game__difficulty__hidden');
+         this.difficultyForm.classList.remove('game__difficulty_hidden');
       }
 
       this.gameScreen = document.getElementById('screen-game');
@@ -131,14 +133,16 @@ export default class GameRender {
          }
       };
 
-      const addSingleAttrs = (
-         objectOfAttrs: Record<string, string>,
-         element: any
+      const addSrc = (srcValue: string, element: HTMLImageElement) => {
+         element.src = srcValue;
+      };
+
+      const addTextContent = (
+         textContentValue: string,
+         element: HTMLElement | null
       ) => {
-         for (let key in objectOfAttrs) {
-            if (element) {
-               element[key] = objectOfAttrs[key];
-            }
+         if (element) {
+            element.textContent = textContentValue;
          }
       };
 
@@ -172,25 +176,25 @@ export default class GameRender {
 
       const dignity = document.createElement('div');
       addClass(['game__card-dignity'], dignity);
-      addSingleAttrs({ textContent: dignityValue }, dignity);
+      addTextContent(dignityValue, dignity);
       addDataAttrs({ id: checkDataSetId(), active: 'true' }, dignity);
 
       const suitSmallIcon = document.createElement('img');
       addClass(['game__card-suit'], suitSmallIcon);
-      addSingleAttrs({ src: smallIcon }, suitSmallIcon);
+      addSrc(smallIcon, suitSmallIcon);
       addDataAttrs({ id: checkDataSetId(), active: 'true' }, suitSmallIcon);
 
       const dignityReverse = document.createElement('div');
       addClass(['game__card-dignity'], dignityReverse);
-      addSingleAttrs({ textContent: dignityValue }, dignityReverse);
+      addTextContent(dignityValue, dignityReverse);
 
       const suitSmallIconReverse = document.createElement('img');
       addClass(['game__card-suit'], suitSmallIconReverse);
-      addSingleAttrs({ src: smallIcon }, suitSmallIconReverse);
+      addSrc(smallIcon, suitSmallIconReverse);
 
       const suitBigIcon = document.createElement('img');
       addClass(['game__card-suit-big'], suitBigIcon);
-      addSingleAttrs({ src: bigIcon }, suitBigIcon);
+      addSrc(bigIcon, suitBigIcon);
       addStyle({ width: '29', height: '26' }, suitBigIcon);
       addDataAttrs({ id: checkDataSetId(), active: 'true' }, suitBigIcon);
 
@@ -231,21 +235,19 @@ export default class GameRender {
    }
 
    renderCard() {
-      type cardsObject = {
-         dignity: string;
-         suit: { name: string; src: string; srcBigIcon: string };
-      };
-
       let cardValues = GameRender.templateCard;
       const difficulty = Number(window.game.difficulty);
       const numberOfCards = this.cardsByDifficulty[difficulty];
+      // Array<CardsObject>
+      let cardValues2: CardsObject[] = this.shuffleCards(
+         cardValues
+      ) as CardsObject[];
 
-      let cardValues2: any = this.shuffleCards(cardValues);
       cardValues2 = cardValues2.slice(0, numberOfCards);
       cardValues2.push(...cardValues2);
-      cardValues2 = this.shuffleCards(cardValues2);
+      cardValues2 = this.shuffleCards(cardValues2) as CardsObject[];
 
-      cardValues2.forEach((card: cardsObject) => {
+      cardValues2.forEach((card) => {
          this.createCard(
             card.dignity,
             card.suit.src,

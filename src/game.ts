@@ -1,15 +1,10 @@
 import GameRender from './render';
 
+import { Game } from './types';
+
 if (!sessionStorage.getItem('status')) {
    sessionStorage.setItem('status', 'start');
 }
-
-type Game = {
-   status: string;
-   difficulty: string;
-   cards: string[];
-   timer: any;
-};
 
 declare global {
    interface Window {
