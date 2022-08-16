@@ -15,7 +15,7 @@ export default class GameRender {
    }[];
 
    constructor() {
-      // this.checkGameStatus();
+      this.checkGameStatus();
    }
 
    checkGameStatus() {
