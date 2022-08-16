@@ -21,7 +21,7 @@ window.game = {
 
 const renderScreens = new GameRender();
 
-class GameEvent {
+export default class GameEvent {
    container = document.getElementById('container') as HTMLElement;
    startGameButton = document.getElementById('start-game') as HTMLElement;
    clickCount: number = 0;
