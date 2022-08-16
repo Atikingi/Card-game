@@ -238,7 +238,6 @@ export default class GameRender {
       let cardValues = GameRender.templateCard;
       const difficulty = Number(window.game.difficulty);
       const numberOfCards = this.cardsByDifficulty[difficulty];
-      // Array<CardsObject>
       let cardValues2: CardsObject[] = this.shuffleCards(
          cardValues
       ) as CardsObject[];
