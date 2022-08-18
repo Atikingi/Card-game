@@ -24,7 +24,7 @@
    "bugs": {
       "url": "https://github.com/Atikingi/Card-game/issues"
    },
-   "homepage": "https://github.com/Atikingi/Card-game#readme",
+   "homepage": "https://github.com/Atikingi/Card-game",
    "devDependencies": {
       "@babel/core": "^7.18.10",
       "@babel/eslint-parser": "^7.18.9",
