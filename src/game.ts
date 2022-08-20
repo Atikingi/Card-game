@@ -183,4 +183,6 @@ export default class GameEvent {
    }
 }
 
-new GameEvent();
+const game = new GameRender();
+
+game.checkGameStatus();

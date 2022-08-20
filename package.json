@@ -12,6 +12,7 @@
       "prepare": "husky install",
       "lint": "npm run lint:ts && npm run lint:css",
       "jest": "jest",
+      "precommit": "npm run lint && jest",
       "build": "cross-env NODE_ENV=production webpack",
       "start": "webpack-dev-server --open"
    },
