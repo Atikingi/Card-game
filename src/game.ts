@@ -165,7 +165,7 @@ export default class GameEvent {
 
       if (this.resultStatus && this.resultIcon) {
          this.resultStatus.textContent = 'Вы проиграли!';
-         (this.resultIcon as HTMLImageElement).src = '../public/img/lost.svg';
+         (this.resultIcon as HTMLImageElement).src = './public/img/lost.svg';
       }
 
       if (this.resultTime && this.timerValue) {
