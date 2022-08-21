@@ -14,10 +14,6 @@ export default class GameRender {
       suit: { name: string; src: string; srcBigIcon: string };
    }[];
 
-   constructor() {
-      this.checkGameStatus();
-   }
-
    checkGameStatus() {
       if (window.game.status === 'start') {
          this.renderScreen('template-difficulty');
