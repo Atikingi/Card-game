@@ -14,7 +14,8 @@
       "jest": "jest",
       "precommit": "npm run lint && jest",
       "build": "cross-env NODE_ENV=production webpack",
-      "start": "webpack-dev-server --open"
+      "start": "webpack-dev-server --open",
+      "deploy": "gh-pages -d dist"
    },
    "repository": {
       "type": "git",
@@ -57,5 +58,7 @@
       "webpack-cli": "^4.10.0",
       "webpack-dev-server": "^4.9.3"
    },
-   "dependencies": {}
+   "dependencies": {
+      "gh-pages": "^4.0.0"
+   }
 }

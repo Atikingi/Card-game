@@ -38,7 +38,7 @@ export default class GameEvent {
          const { target } = event;
 
          if (target) {
-            this.checkDifficulty(event);
+            this.checkDifficulty();
          }
       });
 
@@ -50,7 +50,7 @@ export default class GameEvent {
       });
    }
 
-   checkDifficulty(event: Event) {
+   checkDifficulty() {
       const difficultyField: HTMLElement | null =
          document.getElementById('difficulty-field');
 
@@ -183,6 +183,4 @@ export default class GameEvent {
    }
 }
 
-const game = new GameRender();
-
-game.checkGameStatus();
+renderScreens.checkGameStatus();

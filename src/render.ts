@@ -43,6 +43,7 @@ export default class GameRender {
    }
 
    startGame() {
+      this.difficultyForm = document.getElementById('difficulty-form');
       if (this.difficultyForm) {
          this.difficultyForm.classList.add('game__difficulty_hidden');
       }

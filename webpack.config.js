@@ -44,6 +44,7 @@ module.exports = {
       new HtmlWebpackPlugin({
          template: path.resolve(__dirname, './src/index.html'),
          filename: 'index.html',
+         inject: 'body',
       }),
       new CopyPlugin({
          patterns: [{ from: 'public', to: 'public' }],
